@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOURTH WALLL — Streetwear</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f3ee;
+      color: #111;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(245, 243, 238, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ddd;
+    }
+
+    .navbar {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #777;
+    }
+
+    nav {
+      display: flex;
+      gap: 35px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #777;
+    }
+
+    .cart-btn {
+      border: none;
+      background: #111;
+      color: white;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      background:
+        linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)),
+        url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: 13px;
+      letter-spacing: 5px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 10vw, 130px);
+      line-height: .85;
+      font-weight: 900;
+      letter-spacing: -7px;
+      margin-bottom: 35px;
+    }
+
+    .hero h1 span {
+      color: #d7d7d7;
+    }
+
+    .hero button {
+      background: white;
+      color: #111;
+      border: none;
+      padding: 15px 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .hero button:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      padding: 100px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .intro h2 {
+      font-size: 50px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .intro p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* =========================
+       SHOP
+    ========================= */
+
+    .shop {
+      padding: 70px 6%;
+      background: #fff;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      font-size: 48px;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .section-heading p {
+      color: #777;
+    }
+
+    /* FILTER */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: 1px solid #bbb;
+      background: white;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      position: relative;
+      background: #f4f4f4;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #111;
+      color: white;
+      padding: 7px 11px;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .product-info {
+      padding: 20px;
+      background: white;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .product-info .price {
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    /* COLORS */
+
+    .color-title {
+      font-size: 11px;
+      color: #777;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .colors {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .color {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid white;
+      outline: 1px solid #aaa;
+      cursor: pointer;
+    }
+
+    .black { background: #111; }
+    .white { background: #eee; }
+    .grey { background: #777; }
+    .blue { background: #234c70; }
+    .brown { background: #73533d; }
+    .green { background: #4d6048; }
+    .beige { background: #c7b69c; }
+
+    /* SIZES */
+
+    .size-title {
+      font-size: 11px;
+      color: #777;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 17px;
+    }
+
+    .size {
+      border: 1px solid #ccc;
+      background: white;
+      padding: 7px 10px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .size:hover,
+    .size.selected {
+      background: #111;
+      color: white;
+    }
+
+    .add-cart {
+      width: 100%;
+      padding: 13px;
+      background: #111;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+
+    .add-cart:hover {
+      background: #333;
+    }
+
+    /* =========================
+       BRAND BANNER
+    ========================= */
+
+    .banner {
+      margin: 80px 6%;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      padding: 50px;
+      background:
+        linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+      color: white;
+    }
+
+    .banner h2 {
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: .9;
+      max-width: 700px;
+      letter-spacing: -4px;
+    }
+
+    /* =========================
+       NEWSLETTER
+    ========================= */
+
+    .newsletter {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 45px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .newsletter p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #aaa;
+      background: white;
+    }
+
+    .newsletter-form button {
+      padding: 15px 25px;
+      border: none;
+      background: #111;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #111;
+      color: white;
+      padding: 60px 6% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+    }
+
+    footer p,
+    footer a {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 2;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .copyright {
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* =========================
+       CART POPUP
+    ========================= */
+
+    .cart-popup {
+      position: fixed;
+      right: -400px;
+      top: 0;
+      width: 380px;
+      height: 100vh;
+      background: white;
+      z-index: 2000;
+      padding: 30px;
+      box-shadow: -5px 0 25px rgba(0,0,0,.15);
+      transition: .4s;
+    }
+
+    .cart-popup.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .close-cart {
+      border: none;
+      background: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    #cart-items {
+      max-height: 65vh;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+
+    .cart-total {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .checkout {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      background: #111;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 1000px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 0 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: 550px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading h2 {
+        font-size: 38px;
+        margin-bottom: 10px;
+      }
+
+      .banner {
+        margin: 50px 20px;
+        padding: 30px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-popup {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+  <div class="navbar">
+
+    <div class="logo">
+      FOURTH <span>WALLL</span>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+      BAG (<span id="cart-count">0</span>)
+    </button>
+
+  </div>
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <p>Independent Streetwear — Est. 2026</p>
+
+    <h1>
+      FOURTH<br>
+      <span>WALLL</span>
+    </h1>
+
+    <button onclick="document.getElementById('shop').scrollIntoView()">
+      SHOP COLLECTION
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="intro" id="about">
+
+  <div>
+    <h2>
+      BREAK<br>
+      THE<br>
+      FOURTH<br>
+      WALL.
+    </h2>
+  </div>
+
+  <div>
+    <p>
+      FOURTH WALLL is a contemporary streetwear brand built around
+      individuality, movement and self-expression.
+      We create everyday pieces that exist somewhere between
+      minimalism and rebellion.
+      <br><br>
+      Designed for people who don't need permission to define their
+      own style.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SHOP
+========================= -->
+
+<section class="shop" id="shop">
+
+  <div class="section-heading">
+
+    <div>
+      <p>2026 COLLECTION</p>
+      <h2>PANTS</h2>
+    </div>
+
+    <p>Everyday essentials. Different ways to wear them.</p>
+
+  </div>
+
+
+  <!-- FILTER -->
+
+  <div class="filters">
+
+    <button class="filter-btn active" onclick="filterProducts('all', this)">
+      All
+    </button>
+
+    <button class="filter-btn" onclick="filterProducts('cargo', this)">
+      Cargo
+    </button>
+
+    <button class="filter-btn" onclick="filterProducts('denim', this)">
+      Denim
+    </button>
+
+    <button class="filter-btn" onclick="filterProducts('wide', this)">
+      Wide Leg
+    </button>
+
+    <button class="filter-btn" onclick="filterProducts('utility', this)">
+      Utility
+    </button>
+
+  </div>
+
+
+  <!-- PRODUCTS -->
+
+  <div class="products">
+
+
+    <!-- PRODUCT 1 -->
+
+    <div class="product" data-category="cargo">
+
+      <div class="badge">NEW</div>
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1517445312882-2a3b7e9b7e5a?auto=format&fit=crop&w=900&q=80"
+        alt="Black Cargo Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>01 / Shadow Cargo</h3>
+
+        <div class="price">฿2,490</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color black"></div>
+          <div class="color grey"></div>
+          <div class="color green"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">XS</button>
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Shadow Cargo', 2490)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 2 -->
+
+    <div class="product" data-category="denim">
+
+      <div class="badge">BESTSELLER</div>
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
+        alt="Blue Denim Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>02 / Raw Denim</h3>
+
+        <div class="price">฿2,290</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color blue"></div>
+          <div class="color black"></div>
+          <div class="color white"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">XS</button>
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+          <button class="size">XXL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Raw Denim', 2290)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 3 -->
+
+    <div class="product" data-category="wide">
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1506629905607-d9d9e6d8e6f4?auto=format&fit=crop&w=900&q=80"
+        alt="Wide Leg Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>03 / Wide Structure</h3>
+
+        <div class="price">฿2,190</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color beige"></div>
+          <div class="color black"></div>
+          <div class="color brown"></div>
+          <div class="color grey"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Wide Structure', 2190)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 4 -->
+
+    <div class="product" data-category="utility">
+
+      <div class="badge">LIMITED</div>
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80"
+        alt="Utility Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>04 / Utility 02</h3>
+
+        <div class="price">฿2,690</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color black"></div>
+          <div class="color green"></div>
+          <div class="color brown"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">XS</button>
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Utility 02', 2690)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 5 -->
+
+    <div class="product" data-category="cargo">
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80"
+        alt="Stone Cargo Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>05 / Stone Cargo</h3>
+
+        <div class="price">฿2,390</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color beige"></div>
+          <div class="color green"></div>
+          <div class="color black"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Stone Cargo', 2390)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 6 -->
+
+    <div class="product" data-category="denim">
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=900&q=80"
+        alt="Black Denim Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>06 / Washed Black</h3>
+
+        <div class="price">฿2,590</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color black"></div>
+          <div class="color grey"></div>
+          <div class="color blue"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">XS</button>
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+          <button class="size">XXL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Washed Black', 2590)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 7 -->
+
+    <div class="product" data-category="wide">
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80"
+        alt="Brown Wide Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>07 / Concrete Wide</h3>
+
+        <div class="price">฿2,290</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color grey"></div>
+          <div class="color brown"></div>
+          <div class="color beige"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Concrete Wide', 2290)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRODUCT 8 -->
+
+    <div class="product" data-category="utility">
+
+      <div class="badge">NEW</div>
+
+      <img
+        class="product-image"
+        src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80"
+        alt="Black Utility Pants"
+      >
+
+      <div class="product-info">
+
+        <h3>08 / Frame Utility</h3>
+
+        <div class="price">฿2,790</div>
+
+        <div class="color-title">Color</div>
+
+        <div class="colors">
+          <div class="color black"></div>
+          <div class="color green"></div>
+          <div class="color beige"></div>
+          <div class="color brown"></div>
+        </div>
+
+        <div class="size-title">Size</div>
+
+        <div class="sizes">
+          <button class="size">XS</button>
+          <button class="size">S</button>
+          <button class="size">M</button>
+          <button class="size">L</button>
+          <button class="size">XL</button>
+        </div>
+
+        <button class="add-cart"
+          onclick="addToCart('Frame Utility', 2790)">
+          Add to Bag
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BANNER
+========================= -->
+
+<section class="banner">
+
+  <h2>
+    THERE IS NO<br>
+    WALL BETWEEN<br>
+    YOU & STYLE.
+  </h2>
+
+</section>
+
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
+
+<section class="newsletter" id="contact">
+
+  <h2>Join the Wall</h2>
+
+  <p>
+    Get early access to drops, limited pieces and FOURTH WALLL news.
+  </p>
+
+  <form class="newsletter-form"
+        onsubmit="subscribe(event)">
+
+    <input
+      type="email"
+      placeholder="Your email address"
+      required
+    >
+
+    <button type="submit">
+      JOIN
+    </button>
+
+  </form>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+      <h3>FOURTH WALLL</h3>
+      <p>
+        Contemporary streetwear for people
+        who create their own rules.
+      </p>
+    </div>
+
+    <div>
+      <h3>SHOP</h3>
+      <p><a href="#shop">Pants</a></p>
+      <p><a href="#shop">New Arrivals</a></p>
+      <p><a href="#shop">Best Sellers</a></p>
+    </div>
+
+    <div>
+      <h3>INFO</h3>
+      <p><a href="#">Shipping</a></p>
+      <p><a href="#">Returns</a></p>
+      <p><a href="#">Size Guide</a></p>
+    </div>
+
+    <div>
+      <h3>SOCIAL</h3>
+      <p><a href="#">Instagram</a></p>
+      <p><a href="#">TikTok</a></p>
+      <p><a href="#">Facebook</a></p>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 FOURTH WALLL. ALL RIGHTS RESERVED.
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     CART
+========================= -->
+
+<div class="cart-popup" id="cart">
+
+  <div class="cart-header">
+
+    <h2>Your Bag</h2>
+
+    <button class="close-cart" onclick="closeCart()">
+      ×
+    </button>
+
+  </div>
+
+  <div id="cart-items">
+    <p>Your bag is empty.</p>
+  </div>
+
+  <div class="cart-total">
+    Total: ฿<span id="cart-total">0</span>
+  </div>
+
+  <button class="checkout" onclick="checkout()">
+    CHECKOUT
+  </button>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+  let cart = [];
+
+  /*
+   * SELECT SIZES
+   */
+
+  document.querySelectorAll(".sizes").forEach(sizeGroup => {
+
+    sizeGroup.querySelectorAll(".size").forEach(size => {
+
+      size.addEventListener("click", () => {
+
+        sizeGroup.querySelectorAll(".size")
+          .forEach(s => s.classList.remove("selected"));
+
+        size.classList.add("selected");
+
+      });
+
+    });
+
+  });
+
+
+  /*
+   * ADD TO CART
+   */
+
+  function addToCart(name, price) {
+
+    cart.push({
+      name: name,
+      price: price
+    });
+
+    updateCart();
+
+    openCart();
+
+  }
+
+
+  /*
+   * UPDATE CART
+   */
+
+  function updateCart() {
+
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cart-total");
+
+    cartCount.textContent = cart.length;
+
+    if (cart.length === 0) {
+
+      cartItems.innerHTML =
+        "<p>Your bag is empty.</p>";
+
+      cartTotal.textContent = "0";
+
+      return;
+    }
+
+    let total = 0;
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+      total += item.price;
+
+      const div = document.createElement("div");
+
+      div.className = "cart-item";
+
+      div.innerHTML = `
+        <span>
+          ${item.name}
+        </span>
+
+        <strong>
+          ฿${item.price.toLocaleString()}
+        </strong>
+      `;
+
+      cartItems.appendChild(div);
+
+    });
+
+    cartTotal.textContent =
+      total.toLocaleString();
+
+  }
+
+
+  /*
+   * OPEN CART
+   */
+
+  function openCart() {
+
+    document
+      .getElementById("cart")
+      .classList.add("open");
+
+  }
+
+
+  /*
+   * CLOSE CART
+   */
+
+  function closeCart() {
+
+    document
+      .getElementById("cart")
+      .classList.remove("open");
+
+  }
+
+
+  /*
+   * FILTER PRODUCTS
+   */
+
+  function filterProducts(category, button) {
+
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+    button.classList.add("active");
+
+    document
+      .querySelectorAll(".product")
+      .forEach(product => {
+
+        if (
+          category === "all" ||
+          product.dataset.category === category
+        ) {
+
+          product.style.display = "block";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+  }
+
+
+  /*
+   * NEWSLETTER
+   */
+
+  function subscribe(event) {
+
+    event.preventDefault();
+
+    alert(
+      "Welcome to FOURTH WALLL. You're on the list!"
+    );
+
+    event.target.reset();
+
+  }
+
+
+  /*
+   * CHECKOUT
+   */
+
+  function checkout() {
+
+    if (cart.length === 0) {
+
+      alert("Your bag is empty.");
+
+      return;
+
+    }
+
+    alert(
+      "Checkout system coming soon."
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
